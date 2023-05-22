@@ -1,18 +1,26 @@
 import React from 'react';
+import { useRecoilState } from 'recoil';
+import { tabState } from '../recoilState';
 import styled from 'styled-components';
 
-const NavButton = styled.button`
+const NavButton = styled.button<{ mainButton: boolean }>`
 	padding: 10px 16px;
 	border: none;
 	border-radius: 12px;
-	background-color: rgba(93, 40, 242, 0.12);
-	color: #5d28f2;
+	background-color: ${(props) =>
+		props.mainButton ? ' rgba(93, 40, 242, 0.12)' : 'white'};
+	color: ${(props) => (props.mainButton ? ' #5D28F2' : '#404E71')};
 `;
 const NavBar = () => {
+	const [tab, setTab] = useRecoilState(tabState);
 	return (
 		<div>
-			<NavButton>환전하기</NavButton>
-			<NavButton>거래내역</NavButton>
+			<NavButton mainButton={tab === 0} onClick={() => setTab(0)}>
+				환전하기
+			</NavButton>
+			<NavButton mainButton={tab === 1} onClick={() => setTab(1)}>
+				거래내역
+			</NavButton>
 		</div>
 	);
 };
