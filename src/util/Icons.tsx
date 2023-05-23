@@ -7,6 +7,7 @@ export type IconNameType = 'SOL' | 'ETH' | 'BNB';
 interface IconsProps {
 	name: IconNameType;
 	background: boolean;
+	size: 'S' | 'M';
 }
 export const iconInfo = {
 	SOL: {
@@ -38,9 +39,9 @@ const IconsBackGround = styled.div`
 	align-items: center;
 	border-radius: 50%;
 `;
-export const IconsImage = styled.img`
-	width: 25px;
-	height: 25px;
+export const IconsImage = styled.img<{ size: 'S' | 'M' }>`
+	width: ${(props) => (props.size === 'M' ? '25px' : '20px')};
+	height: ${(props) => (props.size === 'M' ? '25px' : '20px')};
 `;
 const Icons = (props: IconsProps) => {
 	return (
@@ -48,13 +49,13 @@ const Icons = (props: IconsProps) => {
 			{props.background ? (
 				<IconWarpper>
 					<IconsBackGround>
-						<IconsImage src={iconInfo[props.name].imgpath} />
+						<IconsImage src={iconInfo[props.name].imgpath} size={props.size} />
 					</IconsBackGround>
 					<IconName>{iconInfo[props.name].name}</IconName>
 				</IconWarpper>
 			) : (
 				<IconWarpper>
-					<IconsImage src={iconInfo[props.name].imgpath} />
+					<IconsImage src={iconInfo[props.name].imgpath} size={props.size} />
 					<IconName>{iconInfo[props.name].name}</IconName>
 				</IconWarpper>
 			)}

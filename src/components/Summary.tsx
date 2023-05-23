@@ -19,21 +19,27 @@ const SummaryTitle = styled.p`
 `;
 const SummaryItem = styled.div`
 	margin-bottom: 28px;
+	> div {
+		margin-bottom: 10px;
+	}
+	> span {
+		color: #2a3249;
+	}
 `;
 const Summary = () => {
 	return (
 		<SummaryWrapper>
 			<SummaryTitle>요약</SummaryTitle>
 			<SummaryItem>
-				<Icons name="SOL" background={true} />
+				<Icons name="SOL" background={true} size="M" />
 				<MiddleText>1,211,023,512.34 SOL</MiddleText>
 			</SummaryItem>
 			<SummaryItem>
-				<Icons name="ETH" background={true} />
+				<Icons name="ETH" background={true} size="M" />
 				<MiddleText>512.01 ETH</MiddleText>
 			</SummaryItem>
 			<SummaryItem>
-				<Icons name="BNB" background={true} />
+				<Icons name="BNB" background={true} size="M" />
 				<MiddleText>0.35 BNB</MiddleText>
 			</SummaryItem>
 		</SummaryWrapper>
