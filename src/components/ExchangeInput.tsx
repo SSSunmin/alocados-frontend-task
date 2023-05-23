@@ -1,10 +1,11 @@
 import React from 'react';
 import Icons from '../util/Icons';
 import { FlexColumnDiv, FlexDiv, LongButton } from './styled-components';
-import { GrTransaction } from 'react-icons/gr';
+import { RiArrowUpDownLine } from 'react-icons/ri';
 import { TbSquareChevronDown } from 'react-icons/tb';
-import { AiFillRightCircle } from 'react-icons/ai';
 import styled from 'styled-components';
+import HistoryTextBox from './HistoryTextBox';
+import { dummyhistory } from './TransactionHistory';
 
 const NormalDiv = styled.div`
 	height: 56px;
@@ -19,8 +20,17 @@ const InputWrapper = styled(NormalDiv)`
 	flex-direction: column;
 	justify-content: space-between;
 	input {
+		margin-top: 5px;
 		background-color: #fafbfc;
 		height: 20px;
+		font-weight: 600;
+		font-size: 18px;
+		color: #313c57;
+	}
+	p {
+		font-size: 12px;
+		font-weight: 600;
+		color: #546182;
 	}
 `;
 const SelectBox = styled(NormalDiv)`
@@ -31,42 +41,32 @@ const SelectBox = styled(NormalDiv)`
 	justify-content: space-between;
 `;
 
-const ChangeList = styled(NormalDiv)`
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-`;
 const ExchangeInput = () => {
 	return (
 		<FlexColumnDiv>
 			<FlexDiv>
 				<InputWrapper>
-					<p style={{ fontSize: '15px' }}>전환 수량(FROM)</p>
+					<p>전환 수량(FROM)</p>
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="SOL" background={false} />
+					<Icons name="SOL" background={false} size="S" />
 					<TbSquareChevronDown fontSize={'18px'} />
 				</SelectBox>
 			</FlexDiv>
-			<GrTransaction fontSize={'30px'} transform={'rotate(90 0 0)'} />
+			<RiArrowUpDownLine fontSize={'30px'} color="#546182" />
 			<FlexDiv>
 				<InputWrapper>
-					<p style={{ fontSize: '15px' }}>전환 수량(TO)</p>
+					<p>전환 수량(TO)</p>
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="ETH" background={false} />
+					<Icons name="ETH" background={false} size="S" />
 					<TbSquareChevronDown fontSize={'18px'} />
 				</SelectBox>
 			</FlexDiv>
 			<LongButton able={true}>환전</LongButton>
-			<ChangeList style={{ width: '635px' }}>
-				<span>2023-03-12, AM 10:50</span>
-				<span>1,302.44 ETH</span>
-				<AiFillRightCircle color="#404E71" />
-				<span>1,302.44 SOL</span>
-			</ChangeList>
+			<HistoryTextBox data={dummyhistory[0]} hasMargin={false} />
 		</FlexColumnDiv>
 	);
 };
