@@ -8,6 +8,8 @@ interface IconsProps {
 	name: IconNameType;
 	background: boolean;
 	size: 'S' | 'M';
+	onClick?: (name: IconNameType) => void;
+	mousePointer: boolean;
 }
 export const iconInfo = {
 	SOL: {
@@ -26,9 +28,10 @@ export const iconInfo = {
 		imgpath: 'https://cryptologos.cc/logos/bnb-bnb-logo.png?v=025',
 	},
 };
-const IconWarpper = styled.div`
+const IconWarpper = styled.div<{ mousePointer: boolean }>`
 	display: flex;
 	align-items: center;
+	cursor: ${(props) => (props.mousePointer ? 'pointer' : 'defalut')};
 `;
 const IconsBackGround = styled.div`
 	width: 35px;
@@ -47,14 +50,20 @@ const Icons = (props: IconsProps) => {
 	return (
 		<>
 			{props.background ? (
-				<IconWarpper>
+				<IconWarpper
+					onClick={() => props.onClick?.(props.name)}
+					mousePointer={props.mousePointer}
+				>
 					<IconsBackGround>
 						<IconsImage src={iconInfo[props.name].imgpath} size={props.size} />
 					</IconsBackGround>
 					<IconName>{iconInfo[props.name].name}</IconName>
 				</IconWarpper>
 			) : (
-				<IconWarpper>
+				<IconWarpper
+					onClick={() => props.onClick?.(props.name)}
+					mousePointer={props.mousePointer}
+				>
 					<IconsImage src={iconInfo[props.name].imgpath} size={props.size} />
 					<IconName>{iconInfo[props.name].name}</IconName>
 				</IconWarpper>

@@ -1,5 +1,5 @@
-import React from 'react';
-import Icons from '../util/Icons';
+import React, { useState } from 'react';
+import Icons, { IconNameType } from '../util/Icons';
 import { FlexColumnDiv, FlexDiv, LongButton } from './styled-components';
 import { RiArrowUpDownLine } from 'react-icons/ri';
 import { TbSquareChevronDown } from 'react-icons/tb';
@@ -40,8 +40,42 @@ const SelectBox = styled(NormalDiv)`
 	align-items: center;
 	justify-content: space-between;
 `;
+const SelectBoxListWrapper = styled.div`
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	position: relative;
+`;
+const SelectBoxList = styled(SelectBox)`
+	height: max-content;
+	flex-direction: column;
+	align-items: flex-start;
+	position: absolute;
+	top: -15px;
+	div {
+		margin-bottom: 10px;
+	}
+	div:last-child {
+		margin-bottom: 0px;
+	}
+`;
+const selectCoinList: IconNameType[] = ['SOL', 'ETH', 'BNB'];
 
 const ExchangeInput = () => {
+	const [selectedFromCoin, setSelectedFromCoin] = useState<IconNameType>('SOL');
+	const [selectedToCoin, setSelectedToCoin] = useState<IconNameType>('ETH');
+	const [ShowFromCoinList, setShowFromCoinList] = useState(false);
+	const [ShowToCoinList, setShowToCoinList] = useState(false);
+
+	const ChangeFromCoinHandler = (name: IconNameType) => {
+		setSelectedFromCoin(name);
+		setShowFromCoinList(false);
+	};
+	const ChangeToCoinHandler = (name: IconNameType) => {
+		setSelectedToCoin(name);
+		setShowToCoinList(false);
+	};
+
 	return (
 		<FlexColumnDiv>
 			<FlexDiv>
@@ -50,10 +84,35 @@ const ExchangeInput = () => {
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="SOL" background={false} size="S" />
-					<TbSquareChevronDown fontSize={'18px'} />
+					<Icons
+						name={selectedFromCoin}
+						background={false}
+						size="S"
+						mousePointer={false}
+					/>
+					<TbSquareChevronDown
+						fontSize={'18px'}
+						onClick={() => setShowFromCoinList((prev) => !prev)}
+					/>
 				</SelectBox>
 			</FlexDiv>
+			{ShowFromCoinList ? (
+				<SelectBoxListWrapper>
+					<SelectBoxList>
+						{selectCoinList.map((c) => (
+							<Icons
+								key={c}
+								name={c}
+								background={false}
+								size="S"
+								onClick={ChangeFromCoinHandler}
+								mousePointer={true}
+							/>
+						))}
+					</SelectBoxList>
+				</SelectBoxListWrapper>
+			) : null}
+
 			<RiArrowUpDownLine fontSize={'30px'} color="#546182" />
 			<FlexDiv>
 				<InputWrapper>
@@ -61,10 +120,34 @@ const ExchangeInput = () => {
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="ETH" background={false} size="S" />
-					<TbSquareChevronDown fontSize={'18px'} />
+					<Icons
+						name={selectedToCoin}
+						background={false}
+						size="S"
+						mousePointer={false}
+					/>
+					<TbSquareChevronDown
+						fontSize={'18px'}
+						onClick={() => setShowToCoinList((prev) => !prev)}
+					/>
 				</SelectBox>
 			</FlexDiv>
+			{ShowToCoinList ? (
+				<SelectBoxListWrapper>
+					<SelectBoxList>
+						{selectCoinList.map((c) => (
+							<Icons
+								key={c}
+								name={c}
+								background={false}
+								size="S"
+								onClick={ChangeToCoinHandler}
+								mousePointer={true}
+							/>
+						))}
+					</SelectBoxList>
+				</SelectBoxListWrapper>
+			) : null}
 			<LongButton able={true}>환전</LongButton>
 			<HistoryTextBox data={dummyhistory[0]} hasMargin={false} />
 		</FlexColumnDiv>
