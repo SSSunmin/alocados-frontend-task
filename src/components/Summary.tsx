@@ -25,11 +25,11 @@ const Summary = () => {
 		<SummaryWrapper>
 			<SummaryTitle>요약</SummaryTitle>
 			<SummaryItem>
-				<Icons name="SOLANA" background={true} />
+				<Icons name="SOL" background={true} />
 				<MiddleText>1,211,023,512.34 SOL</MiddleText>
 			</SummaryItem>
 			<SummaryItem>
-				<Icons name="ETHEREUM" background={true} />
+				<Icons name="ETH" background={true} />
 				<MiddleText>512.01 ETH</MiddleText>
 			</SummaryItem>
 			<SummaryItem>

@@ -45,7 +45,7 @@ const ExchangeInput = () => {
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="SOLANA" background={false} />
+					<Icons name="SOL" background={false} />
 					<TbSquareChevronDown fontSize={'18px'} />
 				</SelectBox>
 			</FlexDiv>
@@ -56,7 +56,7 @@ const ExchangeInput = () => {
 					<input type="number" />
 				</InputWrapper>
 				<SelectBox>
-					<Icons name="ETHEREUM" background={false} />
+					<Icons name="ETH" background={false} />
 					<TbSquareChevronDown fontSize={'18px'} />
 				</SelectBox>
 			</FlexDiv>
