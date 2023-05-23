@@ -1,21 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 import { IconName } from '../components/styled-components';
+
+export type IconNameType = 'SOL' | 'ETH' | 'BNB';
+
 interface IconsProps {
-	name: 'SOLANA' | 'ETHEREUM' | 'BNB';
+	name: IconNameType;
 	background: boolean;
 }
-const iconInfo = {
-	SOLANA: {
+export const iconInfo = {
+	SOL: {
 		name: 'Solana',
-		imgpath: 'https://cdn.cdnlogo.com/logos/s/85/solana.svg',
+		unit: 'SOL',
+		imgpath: 'https://cryptologos.cc/logos/solana-sol-logo.svg?v=025',
 	},
-	ETHEREUM: {
+	ETH: {
 		name: 'Ethereum',
+		unit: 'ETH',
 		imgpath: 'https://cdn.cdnlogo.com/logos/e/39/ethereum.svg',
 	},
 	BNB: {
 		name: 'BnB',
+		unit: 'BNB',
 		imgpath: 'https://cryptologos.cc/logos/bnb-bnb-logo.png?v=025',
 	},
 };
@@ -32,7 +38,7 @@ const IconsBackGround = styled.div`
 	align-items: center;
 	border-radius: 50%;
 `;
-const IconsImage = styled.img`
+export const IconsImage = styled.img`
 	width: 25px;
 	height: 25px;
 `;
