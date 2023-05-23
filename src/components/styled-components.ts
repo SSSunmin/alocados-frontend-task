@@ -31,6 +31,7 @@ export const MiddleText = styled.span`
 `;
 export const IconName = styled(MiddleText)`
 	color: #4c5b7a;
+	font-size: 14px;
 `;
 export const SmallText = styled.span`
 	font-size: 14px;
